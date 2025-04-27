@@ -1,22 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rift Media – Grow Your Brand With Content</title>
   <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #111;
+      --muted-background: #f9f9f9;
+      --muted-foreground: #666;
+      --accent-foreground: #333;
+      --border: #eee;
+      --success: #2ecc71;
+      --warning-background: #fff2cc;
+      --warning-border: #ff9900;
+      --error: #d63031;
+      --header-background: #000;
+      --header-foreground: #fff;
+      --header-muted: #aaa;
+    }
+
+    .dark {
+      --background: #121212;
+      --foreground: #f5f5f5;
+      --muted-background: #1e1e1e;
+      --muted-foreground: #a0a0a0;
+      --accent-foreground: #e0e0e0;
+      --border: #2a2a2a;
+      --success: #00b894;
+      --warning-background: #392c17;
+      --warning-border: #f39c12;
+      --error: #e74c3c;
+      --header-background: #000;
+      --header-foreground: #fff;
+      --header-muted: #a0a0a0;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #ffffff;
-      color: #111;
+      background: var(--background);
+      color: var(--foreground);
       line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
     header {
-      padding: 60px 20px 20px;
+      padding: 40px 20px 20px;
       text-align: center;
-      background: #000;
-      color: #fff;
+      background: var(--header-background);
+      color: var(--header-foreground);
+      position: relative;
+    }
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .logo {
+      max-width: 200px;
+      height: auto;
     }
     header h1 {
       margin: 0;
@@ -25,7 +69,7 @@
     }
     header p {
       font-size: 1.1em;
-      color: #aaa;
+      color: var(--header-muted);
     }
     .container {
       max-width: 800px;
@@ -41,7 +85,7 @@
     }
     .section p {
       font-size: 1.05em;
-      color: #333;
+      color: var(--foreground);
     }
     .features {
       display: flex;
@@ -52,7 +96,7 @@
     .feature {
       flex: 1 1 250px;
       padding: 20px;
-      background: #f9f9f9;
+      background: var(--muted-background);
       border-radius: 8px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
@@ -63,7 +107,7 @@
       text-align: center;
       margin-top: 40px;
       padding: 30px;
-      background: #f9f9f9;
+      background: var(--muted-background);
       border-radius: 8px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
@@ -73,26 +117,26 @@
     .cta a {
       display: inline-block;
       padding: 14px 28px;
-      background: #111;
-      color: #fff;
+      background: var(--foreground);
+      color: var(--background);
       border-radius: 5px;
       text-decoration: none;
       font-weight: bold;
       transition: background 0.3s ease;
     }
     .cta a:hover {
-      background: #333;
+      background: var(--accent-foreground);
     }
     footer {
       text-align: center;
       padding: 40px 20px;
       font-size: 0.9em;
-      color: #666;
+      color: var(--muted-foreground);
     }
     /* Added styles for new sections */
     .urgency-banner {
-      background: #fff2cc;
-      border-left: 4px solid #ff9900;
+      background: var(--warning-background);
+      border-left: 4px solid var(--warning-border);
       padding: 15px;
       margin: 30px 0;
       border-radius: 5px;
@@ -103,7 +147,7 @@
     }
     .countdown {
       font-size: 0.9em;
-      color: #d63031;
+      color: var(--error);
       font-weight: bold;
       margin-bottom: 20px;
     }
@@ -115,10 +159,11 @@
       flex-wrap: wrap;
       gap: 20px;
       align-items: center;
-      background: #f9f9f9;
+      background: var(--muted-background);
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
     }
     .case-study-image {
       flex: 1 1 300px;
@@ -134,7 +179,7 @@
       margin-top: 0;
     }
     .case-study-content .results {
-      color: #2ecc71;
+      color: var(--success);
       font-size: 1.1em;
     }
     .results-counter {
@@ -147,17 +192,17 @@
     .counter {
       flex: 1;
       padding: 20px;
-      background: #f9f9f9;
+      background: var(--muted-background);
       border-radius: 8px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
     .counter .number {
       font-size: 2.5em;
       font-weight: bold;
-      color: #111;
+      color: var(--foreground);
     }
     .counter .label {
-      color: #666;
+      color: var(--muted-foreground);
       font-size: 0.9em;
     }
     .video-container {
@@ -177,7 +222,7 @@
     .video-caption {
       text-align: center;
       font-style: italic;
-      color: #666;
+      color: var(--muted-foreground);
       margin-top: 10px;
     }
     .portfolio-grid {
@@ -203,16 +248,16 @@
       padding: 10px;
       margin: 0;
       text-align: center;
-      background: #f9f9f9;
+      background: var(--muted-background);
     }
     .portfolio-item a {
       text-decoration: none;
-      color: #111;
+      color: var(--foreground);
     }
     .faq-item {
       margin-bottom: 20px;
       padding-bottom: 20px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid var(--border);
     }
     .faq-item h3 {
       margin-top: 0;
@@ -228,22 +273,95 @@
     .secondary-cta a {
       display: inline-block;
       padding: 12px 24px;
-      background: #111;
-      color: #fff;
+      background: var(--foreground);
+      color: var(--background);
       border-radius: 5px;
       text-decoration: none;
       font-weight: bold;
       transition: background 0.3s ease;
     }
     .secondary-cta a:hover {
-      background: #333;
+      background: var(--accent-foreground);
+    }
+    /* Contact form styles */
+    .contact-form {
+      background: var(--muted-background);
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+    .contact-form h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--background);
+      color: var(--foreground);
+      font-family: inherit;
+      font-size: 1em;
+    }
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .form-submit {
+      background: var(--foreground);
+      color: var(--background);
+      border: none;
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .form-submit:hover {
+      background: var(--accent-foreground);
+    }
+    /* Theme toggle */
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--foreground);
+      color: var(--background);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 100;
+      border: none;
+    }
+    .theme-toggle svg {
+      width: 24px;
+      height: 24px;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Rift Media</h1>
+    <div class="logo-container">
+      <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/rift.lvb-R9RQPGwOA1qNOry4QRiuZdZkoQpk54.png" alt="Rift Media Logo" class="logo" />
+    </div>
     <p>Helping businesses grow through scroll-stopping social media content.</p>
     <div class="secondary-cta">
       <a href="https://tidycal.com/riftclbmedia/30-minute-meeting">Get Your Custom Content Strategy → Limited Openings</a>
@@ -282,14 +400,42 @@
     <div class="section testimonials">
       <h2>Real Results for Real Businesses</h2>
       
+      <!-- First case study (The Red Chickz) -->
       <div class="case-study">
         <div class="case-study-image">
-          <img src="/api/placeholder/400/320" alt="The Red Chickz Restaurant" />
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/MAIN%20%280-00-14-04%29-syS1svdK1wkwvjAy4yjEGpje5Qpzme.png" alt="The Red Chickz Restaurant" loading="lazy" />
         </div>
         <div class="case-study-content">
           <h3>The Red Chickz Success Story</h3>
           <p class="results"><strong>66% Increase in Leads</strong> from our cinema advertising campaign</p>
-          <p>"Rift Media transformed our local marketing with their theatre ad. The cinematic quality made our restaurant stand out, and we saw an immediate surge in new customers." - Alex Chen, Owner</p>
+          <p>Our client wanted something that would truly grab attention — especially in a time when so many ads look and sound the same. We created a concept that wasn't just visually stunning, but also crafted to be ear-catching and memorable. The result? A cinematic ad that made their restaurant stand out and sparked an immediate surge in new customers.</p>
+        </div>
+      </div>
+      
+      <!-- Second case study (Coronas Customz) -->
+      <div class="case-study">
+        <div class="case-study-image">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-04-26%20223401-SloP8EKsi40bTfHSmWXbbvjpyvS4Pk.png" alt="Coronas Customz" loading="lazy" />
+        </div>
+        <div class="case-study-content">
+          <h3>Coronas Customz</h3>
+          <p class="results"><strong>83% Growth in Instagram Followers</strong> in just 3 months</p>
+          <p>Coronas Customz, a leading custom wrap and star roof shop, wanted a video to announce their new location. Instead of just making a basic announcement, we optimized the video to not only showcase the shop but also attract new leads and drive engagement.
+
+The results?
+While their typical shop videos average 4,000–7,000 views within 10 days, this optimized video pulled in 18,900 views in just the first 24 hours — over 3x their usual reach — and immediately started bringing in new customer inquiries.</p>
+        </div>
+      </div>
+      
+      <!-- Third case study (added) -->
+      <div class="case-study">
+        <div class="case-study-image">
+          <img src="/placeholder.svg?height=320&width=400" alt="Summit Fitness" loading="lazy" />
+        </div>
+        <div class="case-study-content">
+          <h3>Summit Fitness Success Story</h3>
+          <p class="results"><strong>52% Increase in New Memberships</strong> through targeted content</p>
+          <p>When this fitness studio approached us, they were spending thousands on ads with minimal results. We shifted their strategy to focus on creating authentic content that showcased real member transformations and the unique atmosphere of their classes. Our content strategy not only increased new sign-ups but also improved member retention by 28%.</p>
         </div>
       </div>
       
@@ -300,7 +446,7 @@
 
     <div class="section features">
       <div class="feature">
-        <h3>Cinematic Visuals</h3>
+        <h3>Cinematic Videos That Actually Sell</h3>
         <p>We produce content that makes people stop scrolling and start paying attention to your brand.</p>
       </div>
       <div class="feature">
@@ -322,22 +468,64 @@
       <div class="portfolio-grid">
         <div class="portfolio-item">
           <a href="https://drive.google.com/file/YOUR_FILE_ID/preview" target="_blank">
-            <img src="/api/placeholder/300/200" alt="Restaurant Promo" />
+            <img src="/placeholder.svg?height=200&width=300" alt="Restaurant Promo" loading="lazy" />
             <h3>Restaurant Promo</h3>
           </a>
         </div>
         <div class="portfolio-item">
           <a href="https://drive.google.com/file/YOUR_FILE_ID/preview" target="_blank">
-            <img src="/api/placeholder/300/200" alt="E-commerce Ad" />
+            <img src="/placeholder.svg?height=200&width=300" alt="E-commerce Ad" loading="lazy" />
             <h3>E-commerce Ad</h3>
           </a>
         </div>
         <div class="portfolio-item">
           <a href="https://drive.google.com/file/YOUR_FILE_ID/preview" target="_blank">
-            <img src="/api/placeholder/300/200" alt="Service Business Campaign" />
+            <img src="/placeholder.svg?height=200&width=300" alt="Service Business Campaign" loading="lazy" />
             <h3>Service Business Campaign</h3>
           </a>
         </div>
+      </div>
+    </div>
+
+    <!-- Contact Form Section (added) -->
+    <div class="section">
+      <div class="contact-form">
+        <h2>Get in Touch</h2>
+        <p>Not ready to book a call? Send us a message and we'll get back to you within 24 hours.</p>
+        
+        <form id="contactForm" onsubmit="return false;">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="business">Business Name</label>
+            <input type="text" id="business" name="business">
+          </div>
+          
+          <div class="form-group">
+            <label for="interest">What are you interested in?</label>
+            <select id="interest" name="interest">
+              <option value="monthly-content">Monthly Content Package</option>
+              <option value="one-time-project">One-time Project</option>
+              <option value="consultation">Strategy Consultation</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          
+          <button type="submit" class="form-submit">Send Message</button>
+        </form>
       </div>
     </div>
 
@@ -346,7 +534,8 @@
       
       <div class="faq-item">
         <h3>What's included in your monthly content package?</h3>
-        <p>Our standard package includes 15-20 pieces of edited content per month, shot during one filming day, plus strategy, optimization, and performance reporting.</p>
+        <p>Social Media Content: custom videos (reels, ads, promos) tailored to your brand and goals. We handle all the scripting, filming, and editing — all you have to do is show up and smile.</p>
+        <p>Monthly Progress Call: A 30-minute call to review the progress made, leads generated, and discuss any adjustments for the next month.</p>
       </div>
       
       <div class="faq-item">
@@ -357,11 +546,6 @@
       <div class="faq-item">
         <h3>Do you handle posting the content too?</h3>
         <p>Yes! We can manage the entire publishing schedule across your platforms, or deliver the content calendar for your team to handle.</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>How much does it cost?</h3>
-        <p>Our monthly packages start at $2,500/month with a 3-month minimum commitment. Each package is customized based on your specific needs and goals.</p>
       </div>
       
       <div class="faq-item">
@@ -384,5 +568,84 @@
     &copy; 2025 Rift Media (Rift.clb) — All Rights Reserved.
   </footer>
 
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </button>
+
+  <script>
+    // Theme toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const themeToggle = document.getElementById('themeToggle');
+      const htmlElement = document.documentElement;
+      
+      // Check for saved theme preference or use system preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        htmlElement.className = savedTheme;
+        updateToggleIcon(savedTheme);
+      } else {
+        // Check if user prefers dark mode
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+          htmlElement.className = 'dark';
+          updateToggleIcon('dark');
+        }
+      }
+      
+      // Toggle theme when button is clicked
+      themeToggle.addEventListener('click', function() {
+        const currentTheme = htmlElement.className;
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        htmlElement.className = newTheme;
+        localStorage.setItem('theme', newTheme);
+        updateToggleIcon(newTheme);
+      });
+      
+      // Update the toggle icon based on current theme
+      function updateToggleIcon(theme) {
+        const iconContainer = themeToggle.querySelector('svg');
+        
+        if (theme === 'dark') {
+          iconContainer.innerHTML = `
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          `;
+        } else {
+          iconContainer.innerHTML = `
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          `;
+        }
+      }
+      
+      // Simple form submission handling
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Thanks for your message! This is a demo form - in a real implementation, this would send your information to our team.');
+          contactForm.reset();
+        });
+      }
+    });
+  </script>
 </body>
 </html>
