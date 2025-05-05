@@ -50,13 +50,19 @@
       transition: background-color 0.3s ease, color 0.3s ease;
       padding-bottom: 70px; /* Added to make room for sticky CTA */
     }
+    
+    /* Modified header to extend black background */
     header {
-      padding: 40px 20px 20px;
-      text-align: center;
       background: var(--header-background);
       color: var(--header-foreground);
       position: relative;
+      padding: 0;
     }
+    
+    .header-content {
+      padding: 40px 20px 30px;
+    }
+    
     .logo-container {
       display: flex;
       justify-content: center;
@@ -67,15 +73,18 @@
       max-width: 200px;
       height: auto;
     }
+    
+    /* Modified heading style to be bigger and bolder */
     header h1 {
       margin: 0;
-      font-size: 2.5rem;
+      font-size: 3rem; /* Increased from 2.5rem */
       letter-spacing: -1px;
-      font-weight: 800;
+      font-weight: 900; /* Increased from 800 */
       line-height: 1.1;
-      max-width: 750px;
-      margin: 0 auto 15px;
+      max-width: 800px; /* Increased from 750px */
+      margin: 0 auto 20px;
     }
+    
     header p {
       font-size: 1.25rem;
       color: var(--header-muted);
@@ -546,10 +555,88 @@
       color: var(--success);
     }
     
+    /* NEW: Navigation Menu Styles */
+    .nav-container {
+      position: sticky;
+      top: 0;
+      background: var(--header-background);
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .nav-logo {
+      max-width: 120px;
+      height: auto;
+    }
+    
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 30px;
+    }
+    
+    .nav-menu li a {
+      color: var(--header-foreground);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+      padding: 5px 0;
+      position: relative;
+    }
+    
+    .nav-menu li a:hover {
+      color: var(--cta-color);
+    }
+    
+    .nav-menu li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--cta-color);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-menu li a:hover::after {
+      width: 100%;
+    }
+    
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      padding: 10px;
+    }
+    
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px 0;
+      background: var(--header-foreground);
+      transition: all 0.3s ease;
+    }
+    
     /* Mobile optimizations */
     @media (max-width: 768px) {
       header h1 {
-        font-size: 2rem;
+        font-size: 2.5rem; /* Increased from 2rem */
       }
       
       header p {
@@ -610,42 +697,118 @@
         width: 100%;
         justify-content: center;
       }
+      
+      /* Mobile Navigation Styles */
+      .hamburger {
+        display: block;
+        z-index: 101;
+      }
+      
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        flex-direction: column;
+        background: var(--header-background);
+        width: 80%;
+        height: 100vh;
+        padding: 80px 20px 30px;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        gap: 20px;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      
+      .nav-menu.active {
+        right: 0;
+      }
+      
+      .nav-menu li {
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+      }
+      
+      .nav-menu li a {
+        font-size: 1.2rem;
+        display: block;
+        padding: 10px;
+      }
+      
+      /* Hamburger Animation */
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+      }
+      
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+      }
+      
+      /* Adjust header padding for the fixed nav */
+      .header-content {
+        padding-top: 20px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- New Navigation Menu -->
+  <div class="nav-container">
+    <nav class="navbar">
+      <a href="#" class="nav-brand">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/rift.lvb-R9RQPGwOA1qNOry4QRiuZdZkoQpk54.png" alt="Rift Media Logo" class="nav-logo" />
+      </a>
+      
+      <button class="hamburger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <ul class="nav-menu">
+        <li><a href="#video-showcase" class="nav-link">Recent Work</a></li>
+        <li><a href="#case-studies" class="nav-link">Case Studies</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#contact-form" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
 
   <header>
-    <div class="logo-container">
-      <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/rift.lvb-R9RQPGwOA1qNOry4QRiuZdZkoQpk54.png" alt="Rift Media Logo" class="logo" />
-    </div>
     
-    <div class="hero">
-      <h1>Grow Your Brand With Scroll-Stopping Content</h1>
-      <p>We turn social media viewers into paying customers with cinematic videos that capture attention and drive action.</p>
-    </div>
-    
-    <div class="authority-stats">
-      <div class="stat-block">
-        <div class="stat-number">+66%</div>
-        <div class="stat-label">Engagement Growth</div>
+      
+      <div class="hero">
+        <h1>Grow Your Brand With Scroll-Stopping Content</h1>
+        <p>We turn social media viewers into paying customers with cinematic videos that capture attention and drive action.</p>
       </div>
-      <div class="stat-block">
-        <div class="stat-number">$10K+</div>
-        <div class="stat-label">Monthly Revenue Added</div>
+      
+      <div class="authority-stats">
+        <div class="stat-block">
+          <div class="stat-number">+66%</div>
+          <div class="stat-label">Engagement Growth</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-number">$50K+</div>
+          <div class="stat-label">Monthly Revenue Added</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-number">25M+</div>
+          <div class="stat-label">Views Generated</div>
+        </div>
       </div>
-      <div class="stat-block">
-        <div class="stat-number">10M+</div>
-        <div class="stat-label">Views Generated</div>
+      
+      <div class="urgency-text">
+        🚨 Only 3 spots left for May — <a href="#contact-form">Apply Now →</a>
       </div>
-    </div>
-    
-    <div class="urgency-text">
-      🚨 Only 3 spots left for May — <a href="#contact-form">Apply Now →</a>
-    </div>
-    
-    <div class="secondary-cta">
-      <a href="https://tidycal.com/riftclbmedia/30-minute-meeting">Get Your Custom Strategy →</a>
+      
+      <div class="secondary-cta">
+        <a href="https://tidycal.com/riftclbmedia/30-minute-meeting">Get Your Custom Strategy →</a>
+      </div>
     </div>
   </header>
 
@@ -670,7 +833,7 @@
       </div>
     </div>
 
-    <div class="section video-showcase">
+    <div id="video-showcase" class="section video-showcase">
       <h2>See Our Work In Action</h2>
       <div class="video-container">
   <iframe 
@@ -684,7 +847,7 @@
 <p class="video-caption">Theatre ad created for The Red Chickz that boosted their leads by 66%</p>
     </div>
 
-    <div class="section testimonials">
+    <div id="case-studies" class="section testimonials">
       <h2>Real Results for Real Businesses</h2>
       
       <!-- First case study (The Red Chickz) -->
@@ -694,7 +857,7 @@
         </div>
         <div class="case-study-content">
           <h3>The Red Chickz Success Story</h3>
-          <p class="results"><strong>66% Increase in Leads</strong> from our cinema advertisement</p>
+          <p class="results"><strong>66% Increase in Leads</strong> from our cinema aadvertisement</p>
           <p>Our client wanted something that would truly grab attention — especially in a time when so many ads look and sound the same. We created a concept that wasn't just visually stunning, but also crafted to be ear-catching and memorable. The result? A cinematic ad that made their restaurant stand out and sparked an immediate surge in new customers.</p>
         </div>
       </div>
@@ -750,7 +913,7 @@ While their typical shop videos average 4,000–7,000 views within 10 days, this
       <p><strong>⚠️ Only 3 spots remaining for May!</strong> Our monthly content packages fill quickly.</p>
     </div>
 
-    <div class="section portfolio">
+    <div id="recent-work" class="section portfolio">
       <h2>Our Recent Work</h2>
       
       <!-- Social Follow Section -->
@@ -948,6 +1111,78 @@ While their typical shop videos average 4,000–7,000 views within 10 days, this
           // No need to prevent default or show an alert as the form will redirect
         });
       }
+      
+      // NEW: Hamburger menu functionality
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('.nav-menu');
+      
+      if (hamburger) {
+        hamburger.addEventListener('click', function() {
+          hamburger.classList.toggle('active');
+          navMenu.classList.toggle('active');
+          
+          // Toggle aria-expanded attribute for accessibility
+          const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+          hamburger.setAttribute('aria-expanded', !expanded);
+        });
+      }
+      
+      // Close menu when clicking a nav link
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          
+          // Smooth scroll to section
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            // Prevent default anchor behavior
+            event.preventDefault();
+            
+            // Smooth scroll to target
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', function(event) {
+        const isClickInsideMenu = navMenu.contains(event.target);
+        const isClickOnHamburger = hamburger.contains(event.target);
+        
+        if (navMenu.classList.contains('active') && !isClickInsideMenu && !isClickOnHamburger) {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      });
+      
+      // Add smooth scrolling to all anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          
+          // Skip if it's just "#" (to avoid scrolling to top)
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            e.preventDefault();
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
     });
   </script>
 </body>
